@@ -27,25 +27,26 @@ if(strlen($iban) == $Countries[substr($iban,0,2)]){
     $MovedCharArray = str_split($MovedChar);
     $NewString = "";
 
-    foreach($MovedCharArray AS $key => $value){
-        if(!is_numeric($MovedCharArray[$key])){
-            $MovedCharArray[$key] = $Chars[$MovedCharArray[$key]];
+    foreach($MovedCharArray AS $fkey => $fvalue){
+        if(!is_numeric($MovedCharArray[$fkey])){
+            $MovedCharArray[$fkey] = $Chars[$MovedCharArray[$fkey]];
         }
-        $NewString .= $MovedCharArray[$key];
+        $NewString .= $MovedCharArray[$fkey];
     }
 
     if(bcmod($NewString, '97') == 1)
     {
-        return TRUE;
+        $validator->addError($key,$error);
+        return true;
     }
     else{
         $validator->addError($key,$error);
-        return FALSE;
+        return false;
     }
 }
 else{
     $validator->addError($key,$error);
-    return FALSE;
+    return false;
 }
 
 ?>
