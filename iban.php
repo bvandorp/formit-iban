@@ -36,7 +36,6 @@ if(strlen($iban) == $Countries[substr($iban,0,2)]){
 
     if(bcmod($NewString, '97') == 1)
     {
-        $validator->addError($key,$error);
         return true;
     }
     else{
